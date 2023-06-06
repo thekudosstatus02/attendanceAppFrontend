@@ -8,7 +8,40 @@ function getLocation() {
 
 function showPosition(position) {
     document.getElementById("location").innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-    document,getElementById("location1").style.display = inline;
+    
+    
+    // API call to get the distance from Admin block...
+    function fetchData(param1, param2) {
+        // Construct the URL with parameters
+        const url = `https://api.example.com/data?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`;
+      
+        // Make a GET request to the API endpoint
+        fetch(url)
+          .then(response => {
+            // Check if the response was successful (status code 2xx)
+            if (response.ok) {
+              // Parse the response JSON data
+              return response.json();
+            } else {
+              // Handle the error if the response was not successful
+              throw new Error('Error: ' + response.status);
+            }
+          })
+          .then(data => {
+            // Process the retrieved data
+            document.getElementById("distance").innerHTML = data;
+            console.log(data);
+            console.log(data);
+            console.log(data);
+            console.log(data);
+            // Do something with the data
+          })
+          .catch(error => {
+            // Handle any errors that occurred during the request
+            console.error(error);
+          });
+      }
+      
 }
 
 function showError(error) {
